@@ -62,14 +62,15 @@ public class GspViewResolver extends AbstractCachingViewResolver implements Orde
 				RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
 				try {
 					ServletContext servletContext = getServletContext();
-					servletContext.setAttribute("org.codehaus.groovy.grails.APPLICATION_CONTEXT", getApplicationContext());
-					RequestContextHolder.setRequestAttributes(new GrailsWebRequest(request, response, getServletContext()));
+					servletContext.setAttribute("org.codehaus.groovy.grails.APPLICATION_CONTEXT",  getApplicationContext());
+
+					RequestContextHolder.setRequestAttributes(new GrailsWebRequest(request, response, servletContext));
+
 					template.make(model).writeTo(response.getWriter());
 				} finally {
 					RequestContextHolder.setRequestAttributes(requestAttributes);
 				}
 			}
-
 		};
 	}
 
