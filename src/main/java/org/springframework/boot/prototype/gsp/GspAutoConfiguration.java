@@ -116,15 +116,15 @@ public class GspAutoConfiguration {
 			}
 
 			if (tagLibResources != null) {
-					for (Resource tagLibResource: tagLibResources) {
-						try {
-							registerTagLib(compileTagLibrary(tagLibResource));
-						} catch (IOException ex) {
-							this.logger.warn("Failed to compile tag library from resource '" + tagLibResource + "'");
-						}
+				for (Resource tagLibResource: tagLibResources) {
+					try {
+						registerTagLib(compileTagLibrary(tagLibResource));
+					} catch (IOException ex) {
+						this.logger.warn("Failed to compile tag library from resource '" + tagLibResource + "'");
+					}
 				}
 			}
-	    }
+		}
 
 		private GrailsTagLibClass compileTagLibrary(Resource tagLibResource) throws IOException {
 			Class<?> compiledTagLibrary = classLoader.parseClass(tagLibResource.getFile());
